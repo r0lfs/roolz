@@ -25,3 +25,4 @@ describe "Rool::Regex" do
     end
   end
 end
+
