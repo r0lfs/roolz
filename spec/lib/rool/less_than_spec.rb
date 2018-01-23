@@ -14,8 +14,8 @@ describe "Rool::LessThan" do
       expect(Rool::LessThan.new(:foo, 5).process(@data)).to eq(false)
     end
     it "returns false if the operand is greater than the value in the data set" do
-      # 5 > -30
-      expect(Rool::LessThan.new(:foo, -30).process(@data)).to eq(false)
+      # 5 > 10 changed to 5>10
+      expect(Rool::LessThan.new(:foo, 10).process(@data)).to eq(false) 
     end
     it "returns false if the value passed does not respond to the < operator" do
       @data = {foo: ['a','b']}
