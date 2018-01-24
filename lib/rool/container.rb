@@ -20,6 +20,8 @@ class Rool::Container
       results << rule.process(dataset)
       messages << rule.message
     end
+    messages.flatten! if !messages.empty? && messages[0].is_a?(Array) #flattens array if it's multidimensional due to nested container calls
+    results.flatten! if !results.empty? && results[0].is_a?(Array) 
     messages.compact!
     results.compact!
     return {results: results, messages: messages}
