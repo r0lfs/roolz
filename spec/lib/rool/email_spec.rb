@@ -7,5 +7,8 @@ describe "Rool::Email" do
     it 'returns false if the data_key is not :email' do
       expect(Rool::Email.new(:name, ).process).to be(false)
     end
+    it 'returns false if there is no data_key' do
+      expect(Rool::Email.new.process).to be(false)
+    end
   end
 end
