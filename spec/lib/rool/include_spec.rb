@@ -17,7 +17,7 @@ describe "Rool::Include" do
       expect(Rool::Include.new(:name, 'Arnold Schwarzenegger').process(@data)).to eq(false)
     end
     it "returns false if the operand or dataset value does not work with '' " do
-      expect(Rool::Include.new(:name, '').process(@data)).to eq(false)
+      expect(Rool::Include.new(:name, ).process(@data)).to eq(false)
     end
     it "returns false if the operand passed does not respond to the :downcase operator" do
       expect(Rool::Include.new(:favorite_books, ['Anathem']).process(@data)).to eq(false)
