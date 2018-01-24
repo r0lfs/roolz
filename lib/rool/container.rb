@@ -8,6 +8,6 @@ class Rool::Container
   end
 
   def process(dataset={})
-    raise "Implement the #process in the child rule container class"
+   raise "Implement the #process in the child rule container class"
   end
 end
