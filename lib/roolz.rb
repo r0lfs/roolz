@@ -1,5 +1,4 @@
 # load up the gem
-
 module Rool
 end
 
@@ -17,5 +16,7 @@ require File.join(__dir__, 'rool/greater_than')
 require File.join(__dir__, 'rool/include')
 require File.join(__dir__, 'rool/less_than')
 require File.join(__dir__, 'rool/regex')
+
 require File.join(__dir__, 'rool/email')
 require File.join(__dir__, 'rool/blank')
+require File.join(__dir__, 'rool/subset')
