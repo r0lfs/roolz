@@ -6,11 +6,11 @@ module Rool
       #returns the oopposite of the child rule, as true is false and false is true
       responses = get_messages(dataset)
       @result = responses[:results].none?
-      @messages = responses[:messages] if @result == true && !responses[:messages].empty?
+      @message = responses[:messages] if @result == true && !responses[:messages].empty?
 
       #because Not only processes one rule, and it returns false if the rule evaluates to true, I set up a series of
-      #if statements to handle the @messages assignment in that case as normally I don't have messages for rules responding to true
-      #however, as it could be calling another container rule that could be evaluating multiple rules, I am checking for those error 
+      #if statements to handle the @messages assignment, as normally I don't have messages for rules returning true.
+      #However, as it could be calling another container rule that could be evaluating multiple rules, I am checking for those error 
       #messages before assigning the fail message.
       
       if @result == false

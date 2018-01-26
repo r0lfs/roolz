@@ -13,4 +13,11 @@ class Rool::Basic
     return false unless dataset.key?(@data_key)
   end
 
+  def to_json
+    Oj.dump(self)
+  end
+
+  def self.from_json(str)
+   Oj.load(str) 
+  end
 end

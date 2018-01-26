@@ -1,4 +1,4 @@
-class Rool::Container
+class Rool::Send
   attr_reader :children, :result, :message
   def initialize(*children_rules)
     if !children_rules.all?{|r| r.kind_of?(Rool::Container) || r.kind_of?(Rool::Basic)}
@@ -31,7 +31,7 @@ class Rool::Container
     Oj.dump(self)
   end
 
-  def self.from_json(str)
+  def self.objectify(str)
    Oj.load(str) 
   end
 end
