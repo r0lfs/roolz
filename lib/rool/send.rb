@@ -1,37 +1,21 @@
 class Rool::Send
-  attr_reader :children, :result, :message
-  def initialize(*children_rules)
-    if !children_rules.all?{|r| r.kind_of?(Rool::Container) || r.kind_of?(Rool::Basic)}
-      raise ArgumentError.new("Expected children rules to be objects in the Rool namespace")
+  attr_accessor :result, :message
+  def initialize(data, mthd, rool, operand, result = nil, message = nil)
+    if !rool.new.kind_of?(Rool::Basic)
+      raise ArgumentError.new("Expected rule to be kind of Rool::Basic, not #{rool} or #{rool.class}")
     end
-    @children = children_rules
-    @result = nil
-    @message = nil
-  end
-
-  def process(dataset={})
-   raise "Implement the #process in the child rule container class"
-  end
-
-  def get_messages(dataset)
-    messages = []
-    results = []
-    self.children.each do |rule|
-      results << rule.process(dataset)
-      messages << rule.message
+    if !mthd.kind_of?(Symbol)
+      raise ArgumentError.new("Expected method to be a Symbol, not #{mthd.class}")
     end
-    messages.flatten! if !messages.empty? && messages[0].is_a?(Array) #flattens array if it's multidimensional due to nested container calls
-    results.flatten! if !results.empty? && results[0].is_a?(Array) 
-    messages.compact!
-    results.compact!
-    return {results: results, messages: messages}
-  end
+    if !data.kind_of?(Array)  
+      raise ArgumentError.new("Expected rule to be kind of Rool::Basic")
+    end
 
-   def to_json
-    Oj.dump(self)
-  end
-
-  def self.objectify(str)
-   Oj.load(str) 
+    gnu_data = {sent: data.send(mthd)}
+    puts gnu_data
+    gune = rool.new(:sent, operand)
+    @result = gune.process(gnu_data)  
+    @message = gune.message if @result == false
+    return @result 
   end
 end
