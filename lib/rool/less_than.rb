@@ -1,3 +1,5 @@
+# Inverse of greater than
+
 module Rool
   class LessThan < Basic
   	def process(dataset)

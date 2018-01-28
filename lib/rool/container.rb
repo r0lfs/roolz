@@ -1,4 +1,7 @@
+# This is the parent class for rules that have children. Put all shared container rule functionality here.
+
 class Rool::Container
+  include Rool 
   attr_reader :children, :result, :message
   def initialize(*children_rules)
     if !children_rules.all?{|r| r.kind_of?(Rool::Container) || r.kind_of?(Rool::Basic)}
@@ -13,7 +16,7 @@ class Rool::Container
    raise "Implement the #process in the child rule container class"
   end
 
-  def get_messages(dataset)
+  def get_messages(dataset={})
     messages = []
     results = []
     self.children.each do |rule|
@@ -27,11 +30,4 @@ class Rool::Container
     return {results: results, messages: messages}
   end
 
-   def to_json
-    Oj.dump(self)
-  end
-
-  def self.from_json(str)
-   Oj.load(str) 
-  end
 end

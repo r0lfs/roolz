@@ -1,5 +1,9 @@
-class Rool::Basic
+# This is the parent class for all non-container rules. Put shared functionality here.
+# The data_key specifies which part of the dataset will be used in the rule.
+# The operand is the value to be used during the rule's computation.
 
+class Rool::Basic 
+  include Rool
   attr_accessor :data_key, :operand, :result, :message
   def initialize(data_key = nil, operand = nil)
     @data_key = data_key
@@ -13,11 +17,4 @@ class Rool::Basic
     return false unless dataset.key?(@data_key)
   end
 
-  def to_json
-    Oj.dump(self)
-  end
-
-  def self.from_json(str)
-   Oj.load(str) 
-  end
 end

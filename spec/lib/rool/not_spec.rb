@@ -12,7 +12,7 @@ describe "Rool::Not" do
     end
     it 'returns true if the child rule processes to false' do
       @data = {foo: 5}
-      expect(Rool::GreaterThan.new(:foo, 10).process(@data)).to eq(true)
+      expect(Rool::Not.new(Rool::GreaterThan.new(:foo, 10)).process(@data)).to eq(true)
     end
   end
 end

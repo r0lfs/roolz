@@ -5,9 +5,6 @@ module Rool
       if !rool.new.kind_of?(Rool::Basic)
         raise ArgumentError.new("Expected rule to be kind of Rool::Basic, not #{rool} or #{rool.class}")
       end
-      if !mthd.kind_of?(Symbol)
-        raise ArgumentError.new("Expected method to be a Symbol, not #{mthd.class}")
-      end
       if !data.kind_of?(Array)  
         raise ArgumentError.new("Expected data to be an Array")
       end
@@ -22,9 +19,10 @@ module Rool
 
     #made the 'process' method so that user could change rule, method, data, and operand quickly instead of making new instance
     def process
-      gnu_data = {sent: @data.send(@mthd)}
+      gnu_data = @data.clone 
+      dataset = {sent: gnu_data.send(@mthd)}
       gnu_obj = @rool.new(:sent, @operand)
-      @result = gnu_obj.process(gnu_data)  
+      @result = gnu_obj.process(dataset)  
       @message = gnu_obj.message if @result == false
       return @result 
     end
