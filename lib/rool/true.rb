@@ -1,3 +1,5 @@
+# An identity rule that always returns true regardless of the dataset
+
 module Rool
   class True < Basic
     def process(dataset={})

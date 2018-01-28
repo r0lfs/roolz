@@ -1,5 +1,14 @@
 # load up the gem
 module Rool
+  #instance method avail to all children rools
+  def to_json
+    Oj.dump(self)
+  end
+  #class method avail only to Rool. I had used a mixin, but I had to use 'Rool::xxxx'.from_json, and Rool.from_json seemed simpler for this task
+  #I need to add some checks to ensure that once loaded from json, it's a valid instance of that class, but will do that later.
+  def self.from_json(str)
+    Oj.load(str)
+  end
 end
 
 require File.join(__dir__, 'rool/basic')

@@ -1,3 +1,5 @@
+# Checks whether the operand (value passed) is greater than the dataset's value
+
 module Rool
   class GreaterThan < Basic
     def process(dataset)

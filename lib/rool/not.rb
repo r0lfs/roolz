@@ -1,10 +1,13 @@
+# A special container that should include only one child rule.
+# It returns the boolean inverse of the result of its child rule.
+
 module Rool
   class Not < Container
 
   	def process(dataset={})
       raise ArgumentError.new("Expected only 1 child rule. recieved #{@children.count}") if @children.count > 1
       #returns the oopposite of the child rule, as true is false and false is true
-      responses = get_messages(dataset)
+      responses = get_messages
       @result = responses[:results].none?
       @message = responses[:messages] if @result == true && !responses[:messages].empty?
 

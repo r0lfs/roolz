@@ -1,14 +1,17 @@
+# The operand is any value that can be in an array.
+# The data_key should point to a part of the dataset that has an array in it.
+# The rule checks whether the array includes the operand.
+
 module Rool
   class Include < Basic
   	def process(dataset)
       super
-      @result = false unless (dataset[@data_key].respond_to?(:include?) && @operand.respond_to?(:downcase))
-      @message = "#{self.class}.process failed because either '#{dataset[@data_key]}' did not respond to include? and/or '#{@operand}' did not respond to downcase" unless @result.nil?
-      return false unless @result.nil?
+      @result = false unless dataset[@data_key].is_a?(Array)
+      @message = "#{self.class}.process failed because either '#{dataset[@data_key]}' was not an Array" unless @result.nil?
+      return @result unless @result.nil?
 
-      #I debated whether or not to use downcase, but ultimately decided to use it, as I imagine data coming through may not be case dependant 
-      @result = dataset[@data_key].downcase.include?(@operand.downcase)
-      @message = "#{self.class}.process failed because '#{dataset[@data_key].downcase}' did not include '#{@operand.downcase}'" unless @result == true 
+      @result = dataset[@data_key].include?(@operand)
+      @message = "#{self.class}.process failed because '#{dataset[@data_key]}' did not include '#{@operand}'" unless @result == true 
       return @result 
     end
   end
