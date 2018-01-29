@@ -21,5 +21,17 @@ describe "Rool::LessThan" do
       @data = {foo: ['a','b']}
       expect(Rool::LessThan.new(:foo, 1).process(@data)).to eq(false)
     end
+
+    #check message
+    it "sets message attribute if LessThan processees to false" do
+      @test = Rool::LessThan.new(:foo, [1,2])
+      @test.process(@data)
+      expect(@test.message).to eq("Rool::LessThan failed because one or both of the data value or operand did not respond to <")
+    end
+    it "sets message attribute if LessThan processes to false" do
+      @test = Rool::LessThan.new(:foo, 10)
+      @test.process(@data)
+      expect(@test.message).to eq("Rool::LessThan failed because '10' is not less than '5'")
+    end
   end
 end

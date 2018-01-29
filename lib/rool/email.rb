@@ -8,7 +8,7 @@ module Rool
 
       valid_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
       @result = true ? valid_regex.match?(dataset[@data_key])	: @result = false
-      @message = "#{self.class}.process failed because #{dataset[@data_key]} is not a valid email address." if @result == false 
+      @message = "#{self.class} failed because '#{dataset[@data_key]}' is not a valid email address." if @result == false 
     
       return @result
     end

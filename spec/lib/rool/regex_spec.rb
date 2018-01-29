@@ -23,6 +23,18 @@ describe "Rool::Regex" do
     it "returns false if the value passed does not respond to the < operator" do
       expect(Rool::Regex.new(:favorite_books, /anathem/i).process(@data)).to eq(false)
     end
+
+    #check message attr
+    it "sets message attr if Regex evaluates to false" do
+      @test = Rool::Regex.new(:name, /Arnold\s?Schwarzenegger/i)
+      @test.process(@data)
+      expect(@test.message).to eq("Rool::Regex failed because operand did not match the data value")
+    end
+    it "returns false if the operand or dataset value does not work with regular expressions" do
+      @test = Rool::Regex.new(:favorite_books, [1,2])
+      @test.process(@data)
+      expect(@test.message).to eq("Rool::Regex failed because either data value did not respond to < and/or operand did not respond :match?")
+    end
   end
 end
 

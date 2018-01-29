@@ -22,5 +22,17 @@ describe "Rool::Include" do
     it "returns false if the operand passed is not included in the accessed dataset" do
       expect(Rool::Include.new(:favorite_books, ['Anathem']).process(@data)).to eq(false)
     end
+
+    #checks message attr
+    it "sets message attr if Include returns false" do
+      @test = Rool::Include.new(:email, 'chargeback')
+      @test.process(@data)
+      expect(@test.message).to eq("Rool::Include failed because data value was not an Array")
+    end
+    it "sets message attr if Include returns false" do
+      @test = Rool::Include.new(:favorite_books, 'Animal Farm')
+      @test.process(@data)
+      expect(@test.message).to eq("Rool::Include failed because data value did not include operand")
+    end
   end
 end

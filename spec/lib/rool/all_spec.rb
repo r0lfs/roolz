@@ -34,7 +34,7 @@ describe "Rool::All" do
     it 'returns an array with 1 element when message attribute is accessed if one child rules evaluate to false' do 
       @test = Rool::All.new(Rool::True.new, Rool::Equal.new(:a_key, 4))
       @test.process(@data)
-      expect(@test.message[0]).to eq("Rool::Equal failed because 4 does not equal 5")
+      expect(@test.message[0]).to eq("Rool::Equal failed because '4' does not equal '5'")
     end
    
     it 'raises an argument error if the objects passed in are not instanciated' do  
