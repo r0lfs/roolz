@@ -1,4 +1,5 @@
 # load up the gem
+require 'oj'
 module Rool
   #instance method avail to all children rools
   def to_json
