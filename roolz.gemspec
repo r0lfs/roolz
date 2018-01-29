@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
   s.description = 'A data-agnostic rules engine'
   s.authors = ['Nate Smith', 'Jonathan Fox', 'Rolf Woolen']
   s.email = 'nate@chargeback.com'
-  s.files = DIR["{lib}/**/*.rb"]
+  s.files = Dir["{lib}/**/*.rb"]
   s.require_path = 'lib'
   # s.homepage = 'todo'
   s.license = 'MIT'
