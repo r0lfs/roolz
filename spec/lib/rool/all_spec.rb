@@ -40,5 +40,6 @@ describe "Rool::All" do
     it 'raises an argument error if the objects passed in are not instanciated' do  
       expect{Rool::All.new(Rool::True, Rool::True.new).process}.to raise_exception(ArgumentError) 
     end
+
   end
 end
