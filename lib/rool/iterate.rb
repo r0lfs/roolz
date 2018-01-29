@@ -2,8 +2,8 @@ module Rool
   class Iterate < Container
     attr_accessor :data_key, :operand, :bas_rool, :con_rool, :result, :message
     def initialize(data_key, operand, bas_rool, con_rool)
-      raise ArgumentError.new("Expected rule to be kind of Rool::Basic, not #{bas_rool.new.class.superclass}") unless bas_rool.new.kind_of?(Rool::Basic)
-      raise ArgumentError.new("Expected rule to be kind of Rool::Container, not #{con_rool.new.class.superclass}") unless con_rool.new.kind_of?(Rool::Container)
+      raise ArgumentError.new("Expected basic rule to be kind of Rool::Basic, not #{bas_rool.new.class.superclass}") unless bas_rool.new.kind_of?(Rool::Basic)
+      raise ArgumentError.new("Expected container rule to be kind of Rool::Container, not #{con_rool.new.class.superclass}") unless con_rool.new.kind_of?(Rool::Container)
       @data_key = data_key
       @operand = operand
       @bas_rool = bas_rool
