@@ -5,7 +5,7 @@ module Rool
       super(data_key, operand)
       @mthd = mthd 
       @rool = rool
-      raise ArgumentError.new("Expected rule to be kind of Rool::Basic, not #{@rool} or #{@rool.class}") unless @rool.new.kind_of?(Rool::Basic)
+      raise ArgumentError.new("Expected rule to be kind of Rool::Basic, not #{@rool.new.class.superclass}") unless @rool.new.kind_of?(Rool::Basic)
     end
 
     def process(dataset)
