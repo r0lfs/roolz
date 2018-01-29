@@ -9,7 +9,7 @@ module Rool
       return @result unless @result.nil? 
       
       @result = @operand < dataset[@data_key]
-      @message = "#{self.class}.process failed because #{@operand} less than #{dataset[@data_key]}" unless @result == true
+      @message = "#{self.class}.process failed because #{@operand} is not less than #{dataset[@data_key]}" unless @result == true
       return @result
     end
   end
