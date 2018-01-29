@@ -7,11 +7,11 @@ module Rool
   	def process(dataset)
       super
       @result = false unless dataset[@data_key].is_a?(Array)
-      @message = "#{self.class}.process failed because either '#{dataset[@data_key]}' was not an Array" unless @result.nil?
+      @message = "#{self.class} failed because data value was not an Array" unless @result.nil?
       return @result unless @result.nil?
 
       @result = dataset[@data_key].include?(@operand)
-      @message = "#{self.class}.process failed because '#{dataset[@data_key]}' did not include '#{@operand}'" unless @result == true 
+      @message = "#{self.class} failed because data value did not include operand" unless @result == true 
       return @result 
     end
   end

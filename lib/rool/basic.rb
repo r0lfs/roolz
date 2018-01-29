@@ -14,7 +14,9 @@ class Rool::Basic
 
   def process(dataset = {})
     raise ArgumentError.new("Expected the dataset to be a ruby Hash") unless dataset.kind_of?(Hash)
-    return false unless dataset.key?(@data_key)
+    @result = false unless dataset.key?(@data_key)
+    @message = "#{self.class}.process failed because the data key is not a key in the dataset" if @result == false
+    return @result unless @result.nil?
   end
 
 end

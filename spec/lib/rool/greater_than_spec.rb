@@ -19,5 +19,17 @@ describe "Rool::GreaterThan" do
       @data = {foo: ['a','b']}
       expect(Rool::GreaterThan.new(:foo, 1).process(@data)).to eq(false)
     end
+
+    #check message
+    it "sets message attribute if GreaterThan processees to false" do
+      @test = Rool::GreaterThan.new(:foo, [1,2])
+      @test.process(@data)
+      expect(@test.message).to eq("Rool::GreaterThan failed because one or both of the data value or operand did not respond to >")
+    end
+    it "sets message attribute if GreaterThan processes to false" do
+      @test = Rool::GreaterThan.new(:foo, 3)
+      @test.process(@data)
+      expect(@test.message).to eq("Rool::GreaterThan failed because '3' is not greater than '5'")
+    end
   end
 end

@@ -7,7 +7,7 @@ module Rool
   	def process(dataset={})
       raise ArgumentError.new("Expected only 1 child rule. recieved #{@children.count}") if @children.count > 1
       #returns the oopposite of the child rule, as true is false and false is true
-      responses = get_messages
+      responses = get_messages(dataset)
       @result = responses[:results].none?
       @message = responses[:messages] if @result == true && !responses[:messages].empty?
 
@@ -17,12 +17,8 @@ module Rool
       #messages before assigning the fail message.
       
       if @result == false
-        if responses[:messages].empty?
-          @messages = ["Failed because #{self.children[0].class} returned true"]
-        else
-          @messages = responses[:messages]
-          @messages << "Failed because #{self.children[0].class} returned true"
-        end
+        @message = responses[:messages]
+        @message << "#{self.class} failed because #{self.children[0].class} returned true"
       end
 
       return @result
